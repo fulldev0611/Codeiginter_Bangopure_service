@@ -1,0 +1,19 @@
+on:
+ push :
+  branches : production
+name: 🚀 Prduction Deploy
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: waws-prod-dm1-195.ftp.azurewebsites.windows.net
+        username: developer-data-work\$developer-data-work
+        password: ${{ secrets.TAZZERCLEANTEST }}
+        server-dir: site/wwwroot/
